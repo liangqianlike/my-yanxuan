@@ -1,50 +1,52 @@
 <template>
   <div class="classify">
     <div class="classify-header">
-        <div class="classify-header-search">
+        <div class="classify-header-search" @click="$router.push('./search')">
             <i class="iconfont icon-sousuo"></i>
             <span>搜索商品，共14520件商品</span>
         </div>
     </div>
     <div class="classify-content">
-        <ul class="classify-content-left">
-            <li>
-                <a href="javascript:;" class="active">推荐专区</a>
-            </li>
-            <li>
-                <a href="javascript:;">夏凉专区</a>
-            </li>
-            <li>
-                <a href="javascript:;">爆品专区</a>
-            </li>
-            <li>
-                <a href="javascript:;">新品专区</a>
-            </li>
-            <li>
-                <a href="javascript:;">居家生活</a>
-            </li>
-            <li>
-                <a href="javascript:;">服饰鞋包</a>
-            </li>
-            <li>
-                <a href="javascript:;">美食酒水</a>
-            </li>
-            <li>
-                <a href="javascript:;">个护清洁</a>
-            </li>
-            <li>
-                <a href="javascript:;">母婴亲子</a>
-            </li>
-            <li>
-                <a href="javascript:;">运动旅行</a>
-            </li>
-            <li>
-                <a href="javascript:;">数码家电</a>
-            </li>
-            <li>
-                <a href="javascript:;">全球特色</a>
-            </li>
-        </ul>
+        <div class="classify-content-left" ref="leftScroll">
+            <ul class="classify-content-ul">
+                <li>
+                    <a href="javascript:;" class="active">推荐专区</a>
+                </li>
+                <li>
+                    <a href="javascript:;">夏凉专区</a>
+                </li>
+                <li>
+                    <a href="javascript:;">爆品专区</a>
+                </li>
+                <li>
+                    <a href="javascript:;">新品专区</a>
+                </li>
+                <li>
+                    <a href="javascript:;">居家生活</a>
+                </li>
+                <li>
+                    <a href="javascript:;">服饰鞋包</a>
+                </li>
+                <li>
+                    <a href="javascript:;">美食酒水</a>
+                </li>
+                <li>
+                    <a href="javascript:;">个护清洁</a>
+                </li>
+                <li>
+                    <a href="javascript:;">母婴亲子</a>
+                </li>
+                <li>
+                    <a href="javascript:;">运动旅行</a>
+                </li>
+                <li>
+                    <a href="javascript:;">数码家电</a>
+                </li>
+                <li>
+                    <a href="javascript:;">全球特色</a>
+                </li>
+            </ul>
+        </div>
         <div class="classify-content-right">
             <div class="classify-content-right-img">
                 <a href="javascript:;">
@@ -95,7 +97,14 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll'
   export default {
+      mounted() {
+          new BScroll(this.$refs.leftScroll,{
+              scrollX: false,
+              scrollY: true
+          })
+      }
   }
 </script>
 
@@ -128,17 +137,24 @@
       display flex
       // box-sizing border-box
       .classify-content-left
+        // margin-top 28px
         width 25%
-        li
-          margin 28px 0
-          a
-            padding 4px 12px
-            color #000
-            font-size 15px
-            border-left 3px solid #fff
-            &.active
-              border-left 3px solid #AB2B2B
-              color #AB2B2B
+        height 500px
+        // background red
+        // overflow hidden
+        // background red
+        .classify-content-ul
+        //   height 600px
+          li
+            margin 32px 0
+            a
+              padding 4px 12px
+              color #000
+              font-size 15px
+              border-left 3px solid #fff
+              &.active
+                border-left 3px solid #AB2B2B
+                color #AB2B2B
       .classify-content-right
         width 75%
         .classify-content-right-img

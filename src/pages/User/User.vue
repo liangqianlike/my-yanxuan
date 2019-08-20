@@ -1,16 +1,16 @@
 <template>
   <div class="user">
     <div class="user-header">
-        <a href="javascript:;" class="user-header-home">
+        <a href="javascript:;" class="user-header-home" @click="$router.push('/')">
             <i class="iconfont icon-home"></i>
         </a>
-        <a href="javascript:;" class="user-header-title">
+        <a href="javascript:;" class="user-header-title" @click="$router.push('/')">
             网易严选
         </a>
         <!--<div class="user-header-title"></div>-->
         <a href="javascript:;" class="user-header-search">
-            <i class="iconfont icon-sousuo"></i>
-            <i class="iconfont icon-gouwuche"></i>
+            <i class="iconfont icon-sousuo" @click="$router.push('/search')"></i>
+            <i class="iconfont icon-gouwuche" @click="$router.push('/shopping')"></i>
         </a>
     </div>
     <div class="user-content">

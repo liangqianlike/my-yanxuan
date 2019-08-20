@@ -2,23 +2,28 @@
   <div class="home">
       <div class="header">
           <a href="javascript:;" class="header-a"></a>
-          <div class="header-search">
+          <div class="header-search" @click="$router.push('/search')">
               <i class="iconfont icon-sousuo"></i>
               <span>搜索商品，共14520件商品</span>
           </div>
           <button type="submit">登录</button>
       </div>
-      <div class="navigation">
-          <div class="navigation-list">
-              <div class="navigation-item active">推荐</div>
-              <div class="navigation-item">居家生活</div>
-              <div class="navigation-item">服饰鞋包</div>
-              <div class="navigation-item">美食酒水</div>
-              <div class="navigation-item">个护清洁</div>
-          </div>
-          <div class="navigation-jiantou">
-              <i class="iconfont icon-jiantou"></i>
-          </div>
+      <div class="navigation" ref="search">
+            <div class="navigation-list">
+                <div class="navigation-item active">推荐</div>
+                <div class="navigation-item">居家生活</div>
+                <div class="navigation-item">服饰鞋包</div>
+                <div class="navigation-item">美食酒水</div>
+                <div class="navigation-item">个护清洁</div>
+                <div class="navigation-item">母婴清洁</div>
+                <div class="navigation-item">运动旅行</div>
+                <div class="navigation-item">数码家电</div>
+                <div class="navigation-item">全球特色</div>
+            </div>
+          
+      </div>
+      <div class="navigation-jiantou">
+        <i class="iconfont icon-jiantou"></i>
       </div>
       <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -224,15 +229,20 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.css'
   export default {
     mounted() {
       new Swiper('.swiper-container',{
-        loop: true,
+        // loop: true,
         pagination: {
           el: '.swiper-pagination'
         }
+      }),
+      new BScroll(this.$refs.search, {
+          scrollX:true,
+          scrollY:false
       })
     }
   }
@@ -244,6 +254,7 @@
     padding-bottom 83px
     width 100%
     height 100%
+
     .header
       position fixed
       left 0
@@ -270,8 +281,7 @@
         border-radius 5px
         color #666
         margin 0 9px
-        outline none
-        .icon-sousuo
+        outline none 
           font-size 18px
         span
           font-size 14px
@@ -279,7 +289,7 @@
         background white
         font-size 12px
         color #b4282d
-        border 0.5px solid #b4282d
+        border 1px solid #b4282d
         border-radius 4px
         text-align center
         width 40px
@@ -297,9 +307,10 @@
       //display none
       //justify-content center
       .navigation-list
+        // width 100%
         padding 0px 8px
         display flex
-        overflow hidden
+        // overflow hidden
         white-space nowrap
         font-size 14px
         font-weight bold
@@ -312,15 +323,20 @@
           color #333
           &.active
             border-bottom 2px solid #b4282d
-      .navigation-jiantou
-        width 60px
-        height 30px
-        text-align center
-        line-height 32px
-        color #666
-        font-weight 400
-        .icon-jiantou
-          font-size 25px
+    .navigation-jiantou
+      position fixed
+      right -1px
+      top 40px
+      z-index 101
+      width 60px
+      height 30px
+      background white
+      text-align center
+      line-height 32px
+      color #666
+      font-weight 400
+      .icon-jiantou
+        font-size 25px
     .swiper-container
       width 100%
       height 185px
