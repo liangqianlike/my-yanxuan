@@ -10,154 +10,69 @@
       </div>
       <div class="navigation" ref="search">
             <div class="navigation-list">
-                <div class="navigation-item active">推荐</div>
-                <div class="navigation-item">居家生活</div>
-                <div class="navigation-item">服饰鞋包</div>
-                <div class="navigation-item">美食酒水</div>
-                <div class="navigation-item">个护清洁</div>
-                <div class="navigation-item">母婴清洁</div>
-                <div class="navigation-item">运动旅行</div>
-                <div class="navigation-item">数码家电</div>
-                <div class="navigation-item">全球特色</div>
+                <div class="navigation-item" :class="{active: thisIndexItem===index}" @click="thisIndexItem=index" 
+                v-for="(navigationItem, index) in this.navigationTitle" :key="index">
+                  {{navigationItem}}
+                </div>
             </div>
-          
       </div>
       <div class="navigation-jiantou">
         <i class="iconfont icon-jiantou"></i>
       </div>
       <div class="swiper-container">
           <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/fca5a6400454717c5b7d6c393071b307.jpg?imageView&quality=75&thumbnail=750x0">
-              </div>
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/09272c0588454c163017bfd19eb932ca.jpg?imageView&quality=75&thumbnail=750x0">
-              </div>
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/eda2f4fc108b2c1be7dd4eafe26b2daa.png?imageView&quality=75&thumbnail=750x0" alt="">
-              </div>
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/41206124e95bb06e5493c20c55cf9e63.jpg?imageView&quality=75&thumbnail=750x0" alt="">
-              </div>
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/b69d768f3cef93c13360a99c094cb5d0.jpg?imageView&quality=75&thumbnail=750x0" alt="">
-              </div>
-              <div class="swiper-slide">
-                  <img src="https://yanxuan.nosdn.127.net/b69d768f3cef93c13360a99c094cb5d0.jpg?imageView&quality=75&thumbnail=750x0" alt="">
+              <div class="swiper-slide" v-for="(slideshowItem, index) in this.slideshowImgs" :key="index">
+                <img :src="slideshowItem">
               </div>
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
       </div>
       <ul class="pledge">
-          <li class="pledge-item first">网易自营品牌</li>
-          <li class="pledge-item two">30天无忧退货</li>
-          <li class="pledge-item last">48小时快速退款</li>
+          <li class="pledge-item" :class="slideshowIcon[index]" v-for="(policyDescItem, index) in homeData.policyDescList" :key="index">
+            {{policyDescItem.desc}}
+          </li>
       </ul>
-      <ul class="menu">
-          <li class="menu-item">
+      <ul class="menu" v-if="homeData.kingKongModule">
+          <li class="menu-item" v-for="(kingKongItem, index) in homeData.kingKongModule.kingKongList" :key="index">
               <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/5243a7191dd4c86b3b28859089273aa8.gif" alt="">
-                  <span>新品首发</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/fede8b110c502ec5799702d5ec824792.png" alt="">
-                  <span>居家生活</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/2415a74cea7d3f080c2dcaa791884572.png" alt="">
-                  <span>服饰鞋包</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/d916591adea776351e084016335e5820.png" alt="">
-                  <span>美食酒水</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/6c3bd9d885c818b1f73e497335a68b47.png" alt="">
-                  <span>个护清洁</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/559d2a240ec20b096590a902217009ff.png" alt="">
-                  <span>母婴亲子</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/5c088559ebcc3f0ffcda663f04dfbeb2.png" alt="">
-                  <span>运动旅行</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/fbca8e1f2948f0c09fc7672c2c125384.png" alt="">
-                  <span>数码家电</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/f7281169d4e82d5d8d52aa1fec83fe01.png" alt="">
-                  <span>全球特色</span>
-              </a>
-          </li>
-          <li class="menu-item">
-              <a href="javascript:;" class="menu-a">
-                  <img src="https://yanxuan.nosdn.127.net/3954c3cbeb4359dd7007be7a076e0dda.gif" alt="">
-                  <span>超级会员</span>
+                  <img :src="kingKongItem.picUrl" alt="kingKongItem.text">
+                  <span>{{kingKongItem.text}}</span>
               </a>
           </li>
       </ul>
       <div class="advertising">
           <img src="https://yanxuan.nosdn.127.net/f4e55920102eef630232f0f34b75cf2e.gif" alt="" class="advertising-img">
       </div>
-      <div class="discount">
-          <a href="javascript:;" class="discount-item">
-              <div class="discount-item-texta">9.9超值专区首发</div>
-              <div class="discount-item-textb">180款爆品新定价</div>
-              <div class="discount-item-img">
-                  <img src="https://yanxuan-item.nosdn.127.net/b2065eab67acc5923a8ec71167a35f6a.png?imageView&thumbnail=150x150&quality=75" alt="">
-                  <img src="https://yanxuan-item.nosdn.127.net/569ab2c87df93c56de39b8c890463242.png?imageView&thumbnail=150x150&quality=75" alt="">
-              </div>
-          </a>
-          <a href="javascript:;" class="discount-item">
-              <div class="discount-item-texta">9.9超值专区首发</div>
-              <div class="discount-item-textb">180款爆品新定价</div>
-              <div class="discount-item-img">
-                  <img src="https://yanxuan-item.nosdn.127.net/b2065eab67acc5923a8ec71167a35f6a.png?imageView&thumbnail=150x150&quality=75" alt="">
-                  <img src="https://yanxuan-item.nosdn.127.net/569ab2c87df93c56de39b8c890463242.png?imageView&thumbnail=150x150&quality=75" alt="">
-              </div>
-          </a>
-          <a href="javascript:;" class="discount-item">
-              <div class="discount-item-texta">9.9超值专区首发</div>
-              <div class="discount-item-textb">180款爆品新定价</div>
-              <div class="discount-item-img">
-                  <img src="https://yanxuan-item.nosdn.127.net/b2065eab67acc5923a8ec71167a35f6a.png?imageView&thumbnail=150x150&quality=75" alt="">
-                  <img src="https://yanxuan-item.nosdn.127.net/569ab2c87df93c56de39b8c890463242.png?imageView&thumbnail=150x150&quality=75" alt="">
-              </div>
-          </a>
-          <a href="javascript:;" class="discount-item">
-              <div class="discount-item-texta">9.9超值专区首发</div>
-              <div class="discount-item-textb">180款爆品新定价</div>
-              <div class="discount-item-img">
-                  <img src="https://yanxuan-item.nosdn.127.net/b2065eab67acc5923a8ec71167a35f6a.png?imageView&thumbnail=150x150&quality=75" alt="">
-                  <img src="https://yanxuan-item.nosdn.127.net/569ab2c87df93c56de39b8c890463242.png?imageView&thumbnail=150x150&quality=75" alt="">
+      <div class="discount" v-if="homeData">
+          <a href="javascript:;" class="discount-item" 
+          v-for="(item, index) in homeData.sceneLightShoppingGuideModule" :key="index">
+              <div class="discount-item-texta">{{item.styleItem.title}}</div>
+              <div class="discount-item-textb">{{item.styleItem.desc}}</div>
+              <div class="discount-item-img" v-for="(itemPicBeanItem, twoIndex) in item.styleItem.itemPicBeanList" :key='twoIndex'>
+                  <img :src="itemPicBeanItem.picUrl" alt="">
               </div>
           </a>
       </div>
       <div class="customize">
           <div class="customize-title">私人订制</div>
           <div class="swiper-container">
-              <div class="swiper-wrapper">
-                  <div class="swiper-slide">
+              <div class="swiper-wrapper" v-if="homeData.personalShop">
+                  <div class="swiper-slide" v-for="(personalShopItem, index) in homeData.personalShop" :key="index">
+                      <a href="javascript:;">
+                          <img :src="personalShopItem.primaryPicUrl" alt="">
+                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
+                      </a>
+                      <a href="javascript:;">
+                          <img :src="personalShopItem.primaryPicUrl" alt="">
+                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
+                      </a>
+                      <a href="javascript:;">
+                          <img :src="personalShopItem.primaryPicUrl" alt="">
+                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
+                      </a>
+                  </div>
+                  <!-- <div class="swiper-slide">
                       <a href="javascript:;">
                           <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
                           平凡的世界 300<span>￥129</span>
@@ -169,7 +84,7 @@
                       <a href="javascript:;">
                           <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
                           平凡的世界 300<span>￥129</span>
-                          </a>
+                      </a>
                   </div>
                   <div class="swiper-slide">
                       <a href="javascript:;">
@@ -198,42 +113,46 @@
                           <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
                           平凡的世界 300<span>￥129</span>
                       </a>
-                  </div>
-                  <div class="swiper-slide">
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                  </div>
+                  </div> -->
               </div>
               <!-- 如果需要分页器 -->
               <div class="swiper-pagination"></div>
           </div>
-
       </div>
-
-
-      <div class="content">
-
-      </div>
-
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.css'
   export default {
-    mounted() {
+    data() {
+      return {
+        thisIndexItem: 0,
+        navigationTitle: ['推荐','居家生活','服饰鞋包','美食酒水','个护清洁','母婴清洁','运动旅行','数码家电','全球特色'],
+        slideshowImgs: [
+          'https://yanxuan.nosdn.127.net/fca5a6400454717c5b7d6c393071b307.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/09272c0588454c163017bfd19eb932ca.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/eda2f4fc108b2c1be7dd4eafe26b2daa.png?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/41206124e95bb06e5493c20c55cf9e63.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/b69d768f3cef93c13360a99c094cb5d0.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/b69d768f3cef93c13360a99c094cb5d0.jpg?imageView&quality=75&thumbnail=750x0'
+          ],
+        slideshowIcon: [
+          'first',
+          'two',
+          'last'
+        ]
+      }
+    },
+    computed: {
+      ...mapState({
+        homeData: state=>state.home.homeData
+      })
+    },
+    async mounted() {
       new Swiper('.swiper-container',{
         // loop: true,
         pagination: {
@@ -243,8 +162,9 @@
       new BScroll(this.$refs.search, {
           scrollX:true,
           scrollY:false
-      })
-    }
+      }),
+      await this.$store.dispatch('getHomeData')
+    },
   }
 </script>
 
@@ -254,7 +174,6 @@
     padding-bottom 83px
     width 100%
     height 100%
-
     .header
       position fixed
       left 0
@@ -382,7 +301,9 @@
       height 170px
       background-color white
       //padding 0 8px
+      
       .menu-item
+        text-align center
         .menu-a
           //margin 0 1px
           float left
@@ -393,8 +314,7 @@
             width 55px
             height 55px
           span
-            display flex
-            text-align center
+            display inline-flex
             line-height 30px
     .advertising
       width 100%
@@ -406,17 +326,17 @@
     .discount
       //display flex
       width 100%
-      height 295px
+      height 277px
       background white
-      padding 7px 0 0 15px
+      padding 7px 0 0 9px
       box-sizing border-box
       .discount-item
         box-sizing border-box
         float left
-        width 45%
-        height 40%
+        width 48%
+        height 48%
         padding 10px 5px 5px 8px
-        margin 1px 1px
+        margin 2px 1px
         background #F5F5F5
         .discount-item-texta
           font-size 17px
@@ -426,19 +346,21 @@
           color #7F7F7F
           margin-top 5px
         .discount-item-img
-          display flex
+          display inline-flex
+          flex-wrap nowrap
           margin-top 5px
           img
             width 75px
             height 75px
     .customize
-      margin-top 10px
+      margin-top 2px
       width 100%
       height 200px
       background white
       box-sizing border-box
       .customize-title
-        padding 18px 0 0 14px
+        padding 10px 0 0 14px
+        font-size 20px
       .swiper-container
         width 100%
         height 100%

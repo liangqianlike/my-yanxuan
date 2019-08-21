@@ -40,7 +40,7 @@ module.exports = {
 const px2remLoader = {
   loader: 'px2rem-loader',
   options: {
-  remUnit: 75  // remUnit为转换rem的基础 设计稿单位/等分数 = remUnit
+  remUnit: 37.5  // remUnit为转换rem的基础 设计稿单位/等分数 = remUnit
   }
 }
 
