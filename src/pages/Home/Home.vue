@@ -57,63 +57,13 @@
       <div class="customize">
           <div class="customize-title">私人订制</div>
           <div class="swiper-container">
-              <div class="swiper-wrapper" v-if="homeData.personalShop">
-                  <div class="swiper-slide" v-for="(personalShopItem, index) in homeData.personalShop" :key="index">
-                      <a href="javascript:;">
-                          <img :src="personalShopItem.primaryPicUrl" alt="">
-                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img :src="personalShopItem.primaryPicUrl" alt="">
-                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img :src="personalShopItem.primaryPicUrl" alt="">
-                          {{personalShopItem.name}} <span>￥{{personalShopItem.retailPrice}}</span>
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide" v-for="(personalShopItem, index) in transitionERWei" :key="index">
+                      <a href="javascript:;" v-for="(item, toIndex) in personalShopItem" :key="toIndex">
+                          <img :src="item.primaryPicUrl" alt="">
+                          {{item.name}} <span>￥{{item.retailPrice}}</span>
                       </a>
                   </div>
-                  <!-- <div class="swiper-slide">
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                  </div>
-                  <div class="swiper-slide">
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                  </div>
-                  <div class="swiper-slide">
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                      <a href="javascript:;">
-                          <img src="https://yanxuan-item.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                          平凡的世界 300<span>￥129</span>
-                      </a>
-                  </div> -->
               </div>
               <!-- 如果需要分页器 -->
               <div class="swiper-pagination"></div>
@@ -123,6 +73,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import chunk from 'lodash/chunk'
   import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   import Swiper from 'swiper'
@@ -150,7 +101,11 @@
     computed: {
       ...mapState({
         homeData: state=>state.home.homeData
-      })
+      }),
+      transitionERWei(){
+        console.log(chunk(this.homeData.personalShop, 3))
+        return chunk(this.homeData.personalShop, 3)
+      }
     },
     async mounted() {
       new Swiper('.swiper-container',{
@@ -164,7 +119,8 @@
           scrollY:false
       }),
       await this.$store.dispatch('getHomeData')
-    },
+     
+    }
   }
 </script>
 

@@ -97,14 +97,26 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   export default {
-      mounted() {
-          new BScroll(this.$refs.leftScroll,{
-              scrollX: false,
-              scrollY: true
-          })
+      computed: {
+        ...mapState({
+            classifyData: state => state.classify.classifyData
+        })
+      },
+      mounted(){
+          console.log('iiii')
+          this.$store.dispatch('getClassifyData')
+          console.log('2222')
       }
+    //   async mounted() {
+    //       new BScroll(this.$refs.leftScroll,{
+    //           scrollX: false,
+    //           scrollY: true
+    //       }),
+    //     this.$store.dispatch('getClassifyData')
+    //   }
   }
 </script>
 

@@ -4,3 +4,6 @@ const BASE = '/api'
 
 //首页数据
 export const reqMockHome = () => ajax('/mock/home')
+
+//分类数据
+export const reqMockClassify = () => ajax('/mock/category')
