@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import './mock/mockServer'
 import 'lib-flexible/flexible'
-
+import './api'
 
 Vue.config.productionTip = false // 禁止在 Vue 启动时的生产提示
 

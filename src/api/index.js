@@ -7,3 +7,9 @@ export const reqMockHome = () => ajax('/mock/home')
 
 //分类数据
 export const reqMockClassify = () => ajax('/mock/category')
+
+//获取搜索关键字
+export const reqSearchComplete = (data) => ajax(`${BASE}/xhr/search/searchAutoComplete.json?keywordPrefix=${data}`)
+// reqSearchComplete('a').then(result=>{
+//   console.log(result)
+// })

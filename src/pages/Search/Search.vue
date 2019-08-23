@@ -3,7 +3,8 @@
     <div class="header">
       <div class="header-input">
         <i class="iconfont icon-sousuo"></i>
-        <input type="search" placeholder="中秋月饼上新热卖"/>
+        <input type="text" placeholder="中秋月饼上新热卖" v-model="keyWord"/>
+        <div class="xx" @click="keyWord=''" v-if="keyWord"></div>
       </div>
       <span class="header-text" @click="$router.push('/')">取消</span>
     </div>
@@ -29,15 +30,48 @@
       </div>
       
     </div>
+    <div class="search-content" v-if="keyWord">
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+      <a href="javascript:;" class="search-item">管你是谁</a>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import { watch, stat } from 'fs';
+  import {mapState} from 'vuex'
   export default {
+    data(){
+      return {
+        keyWord: ''
+      }
+    },
+    methods: {
+      searchKeyword(){
+        this.isShow = true
+      }
+    },
+    computed: {
+      ...mapState({
+        searchKeyWord: state=>state.search.searchKeyWord
+      })
+    },
+    mounted() {
+      this.$store.dispatch('getSearchKeyWord')
+      
+    }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  @import '../../common/stylus/mixins.styl'
     .search
       width 100%
       height 667px
@@ -58,6 +92,17 @@
             width 260px
             height 30px
             outline none
+          .xx
+            position fixed
+            left 280px
+            top 10px
+            width 30px
+            height 30px
+            background-image url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/clearIpt-0821f71561.png)
+            background-repeat no-repeat
+            background-size 26px
+            // background-position-x 228px
+            // z-index 1000
         .header-text
           // margin 20px 20px
           color black 
@@ -86,5 +131,20 @@
               &.hot
                 border 1px solid #b4282d
                 color #b4282d
-
+      .search-content
+        position fixed
+        left 0
+        top 50px 
+        width 100%
+        // height 100%
+        background #fff
+        padding-left 10px
+        // display none
+        .search-item
+          display block
+          font-size 13px
+          color black
+          font-weight 400
+          padding 14px 0 10px 0
+          bottom-border-1px(#F7F7F7)
 </style>
