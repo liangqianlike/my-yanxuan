@@ -13,59 +13,46 @@
         热门搜索
       </div>
       <div class="content-prop">
-        <ul class="content-search">
-          <li class="hot">轻弹云朵拖鞋9.9元</li>
-          <li class="hot">中秋月饼 上新热卖</li>
-          <li>9.9元超值专区</li>
-          <li>酸梅汤 吃货推荐</li>
-          <li>牙刷</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
-          <li>开胃面皮 仅5元</li>
+        <ul class="content-search" v-if="hotSearchData">
+          <li class="hot" v-for="(item, index) in hotSearchData.hotKeywordVOList" :key="index">{{item.keyword}}</li>
         </ul>
       </div>
       
     </div>
     <div class="search-content" v-if="keyWord">
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
-      <a href="javascript:;" class="search-item">管你是谁</a>
+      <!-- <a href="javasctipt:;" class="search-item">ssss</a> -->
+      <a href="javascript:;" class="search-item" v-for="(item, index) in searchKeyWord" :key="index">{{item}}</a>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { watch, stat } from 'fs';
   import {mapState} from 'vuex'
   export default {
     data(){
       return {
-        keyWord: ''
-      }
-    },
-    methods: {
-      searchKeyword(){
-        this.isShow = true
+        keyWord: '',
       }
     },
     computed: {
+      
       ...mapState({
-        searchKeyWord: state=>state.search.searchKeyWord
+        searchKeyWord: state=>state.search.searchKeyWord,
+        hotSearchData: state=>state.search.hotSearchData
       })
     },
-    mounted() {
-      this.$store.dispatch('getSearchKeyWord')
-      
+    watch: {
+      keyWord(){
+        clearTimeout(this.setTimoutId)
+        this.setTimoutId = setTimeout(()=>{
+          this.$store.dispatch('getSearchKeyWord', this.keyWord)
+        },300)
+      }
+    },
+    async mounted(){
+      await this.$store.dispatch('getHotSearch')
+      // console.log(this.$store.dispatch('getHotSearch'))
+
     }
   }
 </script>

@@ -13,3 +13,9 @@ export const reqSearchComplete = (data) => ajax(`${BASE}/xhr/search/searchAutoCo
 // reqSearchComplete('a').then(result=>{
 //   console.log(result)
 // })
+
+//获取热门搜索的关键字
+export const reqHotSearch = ()=> ajax(`${BASE}/xhr/search/init.json`)
+// reqSearchHot().then(result=>{
+//   console.log(result)
+// })
