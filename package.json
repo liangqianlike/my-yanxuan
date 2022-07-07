@@ -18,7 +18,7 @@
     "lodash": "^4.17.15",
     "mint-ui": "^2.2.13",
     "mockjs": "^1.0.1-beta3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "px2rem-loader": "^0.1.9",
     "swiper": "^4.5.0",
     "vee-validate": "^2.2.9",
